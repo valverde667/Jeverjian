@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Nov 18 22:58:43 2019
+
+@author: nickvalverde
+"""
+
 # Program for thin lens FODO quad transport
 
 import numpy as np
@@ -109,3 +117,17 @@ ax_phase_space.set_xlabel(r"Axial Coordinate, $s/L_p$ [Lattice Periods]", fontsi
 plt.tight_layout()
 plt.savefig('fodo_thin_xxpps', dpi = 300)
 
+
+#######################################
+# Stability Criteria
+# Create complete matrix for Lattice
+
+M = M0 @ MD @ M0 @ M0 @ MF @ M0
+trace = M.trace()
+condition = trace/2.
+if condition <= 1:
+    print("Stabilitiy condition is satisfied.")
+    print("The half trace is %f " % condition)
+else:
+    print("Stability condition is not satisfied.")
+    print("The half-trace is %f " % condition)
