@@ -9,15 +9,15 @@ mm = 1.e-3 # unit mm
 mr = 1.e-3 # unit mrad
 
 # Lattice parameters
-d = 1.  # half drift length [m]
-f = 4.      # focal length [m]
+f = 2
+d = 2*f      # focal length [m]
 #f = 0.9999  # focal length [m] unstable value ... just beyond stability
 
-Lp = 4*d  # Lattice period [m]
+Lp = 2*d  # Lattice period [m]
 
 # Particle initial conditions and advance control
 xi  = 1.*mm  # inital x-coordinate
-xpi = 0.0*mr  # inital angle
+xpi = xi/d  # inital angle
 si  = 0.     # inital axial coordinate
 
 n_advance = 1 # lattice periods to advance
@@ -98,14 +98,24 @@ ax_pos = axes[0]
 ax_phase_space = axes[1]
 
 ax_pos.plot(s_history/Lp, x_history/mm)
-ax_pos.set_title(r"$x$-$x'$ Phase-Space Evolution, %g FODO CElls" %n_advance, fontsize = 16)
+ax_pos.axvline(x=0, ls = '--', c = 'r', label = 'half-focus')
+ax_pos.axvline(x=1, ls = '--', c = 'g', label = 'defocus')
+ax_pos.axvline(x=2, ls = '--', c = 'r')
+
+ax_pos.set_title(r"$x$-$x'$ Phase-Space Evolution, %g FODO CEll" %n_advance, fontsize = 16)
 ax_pos.set_ylabel(r'Position, $x$ [mm]', fontsize = 14)
 
 ax_phase_space.plot(s_history/Lp, xp_history/mr)
 #ax_phase_space.set_title('Phase Space Evolution through %g FODO Cells' %n_advance)
 ax_phase_space.set_ylabel(r"Angle, $x'$ [mr]", fontsize = 14)
 ax_phase_space.set_xlabel(r"Axial Coordinate, $s/L_p$ [Lattice Periods]", fontsize = 14)
+ax_phase_space.axvline(x=0, ls = '--', c = 'r', label = 'half-focus')
+ax_phase_space.axvline(x=1, ls = '--', c = 'g', label = 'defocus')
+ax_phase_space.axvline(x = 2,ls = '--',c = 'r')
+plt.legend()
 
 plt.tight_layout()
-plt.savefig('fodo_thin_xxpps', dpi = 300)
+plt.legend()
+#plt.savefig('fodo_thin_xxpps', dpi = 300)
+
 

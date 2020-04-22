@@ -9,7 +9,7 @@ mr = 1.e-3 # unit mrad
 
 # Lattice parameters
 f = 4.      # focal length [m]
-occupancy = 0.1
+occupancy = 0.5
 #f = 0.9999  # focal length [m] unstable value ... just beyond stability
 Lp = 4 # Lattice period [m]
 l = occupancy*Lp/2. #thickness of lenses [m]
@@ -21,7 +21,7 @@ xi  = 1.*mm  # inital x-coordinate
 xpi = 0.0*mr  # inital angle
 si  = 0.     # inital axial coordinate
 
-n_advance = 75 # lattice periods to advance
+n_advance = 10 # lattice periods to advance
 
 # Setup coordinate array
 #   xv = [x,x'] = [x-position,x-angle] == [x,xp]
